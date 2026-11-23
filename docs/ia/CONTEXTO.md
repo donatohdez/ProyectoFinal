@@ -27,6 +27,14 @@ El enunciado completo, la arquitectura, el modelo de datos y las pruebas previst
 | Médico y agenda | HU-04 / RCM-16 consulta de médicos, HU-05 / RCM-20 selección de horario. |
 | Reserva | HU-06 / RCM-24 guardado, HU-07 / RCM-25 exclusividad, HU-08 / RCM-26 confirmación. |
 
+## Guías para la interfaz web
+
+Al trabajar en HTML, CSS o JavaScript del navegador, consulta la skill [Modern Web Guidance](https://github.com/GoogleChrome/modern-web-guidance) desde Codex o Claude Code. Las dos herramientas comparten la misma instalación del proyecto. Usa el caso y el plan para elegir qué recomendaciones aplicar.
+
+- **Búsqueda por NSS.** Empieza por [validación después de la interacción](https://github.com/GoogleChrome/modern-web-guidance/blob/main/skills/modern-web-guidance/guides/forms/validate-input-after-interaction.md). El NSS sigue siendo texto de 11 dígitos y Express valida cada consulta.
+- **Médicos, horarios y confirmación.** Consulta las guías de diseño adaptable y accesibilidad para la distribución de los paneles, la navegación por teclado y los mensajes de estado.
+- Registra en la bitácora la guía aplicada, qué decisión orientó y la comprobación que hiciste.
+
 ## Cómo retomar con la otra IA
 
 - **Codex o Claude Code con la carpeta abierta.** Abre `ProyectoFinal` como carpeta de trabajo para que ambos consulten los mismos archivos. Pasa de una sesión a otra una vez guardado el estado. Si dos sesiones están abiertas, asigna solo a una la edición de la misma tarea.

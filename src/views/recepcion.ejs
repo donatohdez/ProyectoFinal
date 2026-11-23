@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Registrar cita médica | Recepción</title>
+  <link rel="stylesheet" href="/css/recepcion.css">
+  <script src="/js/recepcion.js" defer></script>
+</head>
+<body>
+  <a class="salto" href="#nss">Ir al campo de NSS</a>
+
+  <header class="barra">
+    <div class="barra__contenido">
+      <span class="marca" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="22" height="22" focusable="false"><path fill="currentColor" d="M10 3h4v7h7v4h-7v7h-4v-7H3v-4h7z"/></svg>
+      </span>
+      <p class="barra__nombre">Clínica · <strong>Recepción</strong></p>
+    </div>
+  </header>
+
+  <main class="recepcion">
+    <div class="encabezado">
+      <p class="sobretitulo">Paso 1 de 4 · Identificar al paciente</p>
+      <h1>Registrar cita médica</h1>
+      <p class="encabezado__texto">Captura el Número de Seguridad Social para localizar al paciente y continuar con el médico y el horario.</p>
+    </div>
+
+    <ol class="pasos" aria-label="Avance del registro">
+      <li class="pasos__item" aria-current="step"><span class="pasos__num">1</span> Paciente</li>
+      <li class="pasos__item"><span class="pasos__num">2</span> Médico</li>
+      <li class="pasos__item"><span class="pasos__num">3</span> Horario</li>
+      <li class="pasos__item"><span class="pasos__num">4</span> Confirmación</li>
+    </ol>
+
+    <div class="distribucion">
+      <section class="panel panel--principal" aria-labelledby="paciente">
+        <h2 id="paciente" class="panel__titulo">Identificar al paciente</h2>
+
+        <search>
+          <form id="form-nss" class="formulario" action="/" method="get" novalidate data-busqueda="pendiente">
+            <div class="campo">
+              <label for="nss">Número de Seguridad Social (NSS)</label>
+              <p id="nss-ayuda" class="campo__ayuda">11 dígitos, sin espacios ni guiones.</p>
+              <input id="nss" name="nss" type="text" inputmode="numeric" autocomplete="off"
+                     autocorrect="off" autocapitalize="none" spellcheck="false" enterkeyhint="search"
+                     maxlength="11" required aria-describedby="nss-ayuda nss-estado">
+            </div>
+
+            <button class="boton" type="submit" aria-disabled="true" aria-describedby="nss-estado">Buscar paciente</button>
+
+            <p id="nss-estado" class="estado estado--pendiente" role="status">
+              <span class="estado__marca" aria-hidden="true">Pendiente</span>
+              La búsqueda se conectará en el siguiente hito. Por ahora no consulta pacientes.
+            </p>
+          </form>
+        </search>
+      </section>
+
+      <aside id="panel-derecho" class="panel panel--detalle" aria-labelledby="detalle" tabindex="-1">
+        <h2 id="detalle" class="panel__titulo">Detalle de la cita</h2>
+        <p class="vacio__intro">Este panel se completa conforme avanza el registro:</p>
+        <ul class="vacio__lista">
+          <li><strong>Paciente identificado.</strong> Nombre y NSS al buscar.</li>
+          <li><strong>Ficha del médico.</strong> Especialidad y consultorio al seleccionarlo.</li>
+          <li><strong>Cita confirmada.</strong> Paciente, médico, consultorio, fecha y hora al guardar.</li>
+        </ul>
+      </aside>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,13 @@
+
+> registro-citas-medicas@0.1.0 test
+> node --test test/integration/arranque.test.js
+
+✔ GET / presenta la pantalla de recepción y el panel derecho (22.163375ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 81.883042

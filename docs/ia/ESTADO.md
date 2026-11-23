@@ -1,32 +1,44 @@
 # Estado de implementación
 
-**Última actualización:** 23/11/2026 10:17, hora local de Hermosillo.
-**Actualizó:** Codex.
-**Hito actual:** 0 · Preparación del proyecto.
-**Estado:** Plan y contexto preparados, con Git inicializado en la rama local `main`. Arranque técnico pendiente.
+- **Última actualización:** 23/11/2026, hora local de Hermosillo.
+- **Actualizó:** Claude Code.
+- **Hito actual:** 0 completado con base visual de recepción. Hito 1 por iniciar.
+- **Estado:** Base de la aplicación, capa de datos y pantalla de recepción diseñada. La búsqueda por NSS sigue pendiente.
 
 ## Último avance verificado
 
-- Se revisó el caso 5 y se documentó el plan con el stack acordado, las ocho historias de Jira y trece casos de prueba previstos.
-- La carpeta `ProyectoFinal` estaba vacía antes de preparar el conjunto inicial de archivos de planificación.
-- La planificación de Jira es un antecedente. El estado de la aplicación se registra en este archivo a partir de los archivos y las pruebas del proyecto.
+- Node.js 24.12.0, Express y EJS sirven la pantalla inicial de recepción en `GET /`.
+- SQLite aplica una migración versionada y carga los catálogos ficticios y los horarios de consulta. Se crearon repositorios para pacientes, médicos, agenda y citas.
+- Seis pruebas de integración verifican el arranque, las consultas, la agenda, la persistencia y las restricciones de unicidad.
+- La [bitácora](../bitacora-ia.md) documenta lo realizado para el video 02a y enlaza las salidas de verificación.
+
+## Base visual de recepción (Claude Code)
+
+**Archivos:** `src/views/recepcion.ejs`, `src/public/css/recepcion.css`, `src/public/js/recepcion.js` (nuevo).
+
+**Decisiones que deben mantener las siguientes pantallas:**
+- Variables en `:root` de `recepcion.css` (color, tipografía, espaciado `--espacio-*`, `--radio`, `--foco-*`, `--alto-control`). No usar valores sueltos.
+- Componentes reutilizables: `.panel` (+ `.panel--detalle`), `.campo` (label, `.campo__ayuda`, input), `.boton`, `.estado` (`--pendiente`, `--ok`, `--error`; siempre con texto, no solo color).
+- Paleta azul petróleo (`--color-primario` #0b5c63) sobre fondo claro; foco azul de 3 px con `outline-offset`; controles de 3 rem (3.25 rem en puntero táctil).
+- Distribución: formulario a la izquierda y `#panel-derecho` (`<aside>`) a la derecha desde 56 rem; debajo del formulario en pantallas angostas. Médico, horario y confirmación se renderizan dentro de `#panel-derecho` con `.panel`/`.estado`.
+- Etiquetas visibles, ayuda enlazada con `aria-describedby`, mensajes en `role="status"`, indicador de pasos `<ol>` con `aria-current="step"`, enlace para saltar al NSS.
+- Búsqueda pendiente: el formulario tiene `data-busqueda="pendiente"` y el botón `aria-disabled="true"`. `recepcion.js` evita el envío y avisa en la región de estado. Para conectar el hito 1, quitar ese atributo y el `aria-disabled`, y sustituir el aviso por resultados.
+
+**Comprobaciones:** `npm test` → 6 de 6 pasan. Capturas con Chrome headless a 1280 px (dos columnas) y 500 px (apilado, sin desbordamiento horizontal). Servidor responde 200 en `/`, CSS y JS. **No verificado:** navegación con teclado real y lector de pantalla (la extensión de Chrome no estaba conectada). El foco se implementó con `:focus-visible`; pendiente de revisión manual con Tab. Tampoco se probó a 390 px reales (el modo headless no baja de 500 px).
 
 ## Implementación y pruebas
 
 | Área | Estado |
 |---|---|
-| Repositorio Git | Inicializado en `main`, con `origin` configurado. |
-| Node, Express y EJS | Pendientes de preparar. |
-| Migraciones, SQLite y datos ficticios | Pendiente de implementar. |
+| Repositorio Git | Rama `main`, con `origin` configurado. Cambios del hito 0 locales. |
+| Node, Express y EJS | Arranque y respuesta HTTP verificados. |
+| Migración SQLite y datos ficticios | Esquema y datos de demostración verificados. |
 | Hitos 1 a 3 | Pendientes. Comprenden paciente, médico y agenda, y reserva con confirmación. |
-| Verificación y demostración | Pendientes. |
-| Pruebas de la aplicación | Sin ejecutar. Todavía no hay aplicación ni pruebas en la carpeta de destino. |
+| Verificación y demostración | El flujo completo se verificará cuando estén conectadas las historias. |
 
 ## Siguiente paso
 
-**Completar la primera parte del hito 0.** Fijar y documentar una versión de Node compatible con el plan, preparar `package.json`, Express y EJS, y comprobar que `GET /` abre la pantalla inicial de recepción. Después, preparar la conexión a SQLite, el esquema y los datos ficticios. Consultar las secciones 4, 5 y 6 de [PLAN.md](../../PLAN.md).
-
-**Bloqueos conocidos:** ninguno para planificar. Queda por comprobar el entorno y las dependencias al empezar el arranque técnico.
+**Hito 1 · Identificación del paciente (primera tarea técnica).** Revisar con Tab el foco de la pantalla. Después conectar el formulario de recepción con la ruta de búsqueda y el repositorio de pacientes. Validar el NSS de 11 dígitos y probar los resultados de búsqueda, los mensajes de error y la limpieza del paciente anterior. Guiarse por HU-01 a HU-03 y [PLAN.md](../../PLAN.md).
 
 ## Cómo actualizar este registro
 
@@ -37,5 +49,7 @@ Cada entrada debe indicar **quién y cuándo**, **qué cambió**, **qué se veri
 ## Historial
 
 - **23/11/2026 · Codex.** Preparó el plan y el contexto compartido. La implementación empieza en el hito 0.
-
-- **23/11/2026 10:17 · Codex.** Inicializó Git en `main`, configuró `origin` para [ProyectoFinal](https://github.com/donatohdez/ProyectoFinal) y preparó el commit local de planificación. El hito 0 continúa con el arranque de Node, Express y EJS.
+- **23/11/2026 10:17 · Codex.** Inicializó Git en `main`, configuró `origin` para [ProyectoFinal](https://github.com/donatohdez/ProyectoFinal) y preparó el commit de planificación `23123a7`.
+- **23/11/2026 · Codex.** Preparó y verificó el arranque de Express y EJS y los repositorios con SQLite. El siguiente paso es conectar la búsqueda de pacientes.
+- **23/11/2026 10:53 · Codex.** Configuró Modern Web Guidance como skill de proyecto para Codex y Claude Code. Verificó que ambos apuntan al mismo archivo y que el buscador devuelve la guía de validación de formularios. El siguiente paso sigue siendo conectar la búsqueda por NSS.
+- **23/11/2026 · Claude Code.** Diseñó la base visual de recepción (HTML/CSS/JS en `src/`), documentó decisiones visuales y verificó pruebas y capturas. Pendiente: revisión manual de teclado. Siguiente: conectar la búsqueda por NSS (hito 1).

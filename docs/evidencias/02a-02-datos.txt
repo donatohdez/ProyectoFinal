@@ -1,0 +1,37 @@
+v24.12.0
+
+added 76 packages in 287ms
+
+> registro-citas-medicas@0.1.0 db:migrate
+> node scripts/migrate.js
+
+(node:31093) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+Migraciones aplicadas.
+
+> registro-citas-medicas@0.1.0 db:seed
+> node scripts/seed-demo.js
+
+(node:31110) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+Catálogos ficticios y agenda futura disponibles.
+
+> registro-citas-medicas@0.1.0 test
+> node --test
+
+✔ GET / presenta la pantalla de recepción y el panel derecho (24.11825ms)
+(node:31129) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+✔ el catálogo conserva el NSS textual y expone ficha y horarios de cada médico (3.060792ms)
+✔ la agenda ficticia usa espacios futuros de 30 minutos dentro de consulta (1.62775ms)
+✔ SQLite rechaza un segundo registro del espacio y la agenda excluye los ocupados (1.631083ms)
+✔ la clave de operación es única y permite recuperar la cita guardada (1.387125ms)
+✔ la cita permanece al reabrir SQLite y repetir la preparación de datos ficticios (3.996708ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 90.160459
